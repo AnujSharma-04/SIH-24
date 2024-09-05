@@ -8,18 +8,25 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="/static/styles.css" rel="stylesheet">
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <style>
+        /* Hide the video and control elements when closed */
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5 text-center">
         <h1 class="mb-4">Webcam Capture and Recording</h1>
         <video id="webCam" autoplay playsinline width="800" height="600" class="mb-3"></video>
         <canvas id="canvas" style="display: none;"></canvas>
-        <button id="snapButton" class="btn btn-primary">SNAP</button>
+        <!-- <button id="snapButton" class="btn btn-primary">SNAP</button> -->
         <a id="downloadLink" class="btn btn-success" style="display: none;" download="snapshot.png">Download Snapshot</a>
         <br><br>
         <button id="startRecordButton" class="btn btn-warning">Start Recording</button>
-        <button id="stopRecordButton" class="btn btn-danger" style="display: none;">Stop Recording</button>
-        <a id="downloadVideoLink" class="btn btn-info" style="display: none;" download="video.mp4">Download Video</a>
+        <button id="stopRecordButton" class="btn btn-danger hidden">Stop Recording</button>
+        <a id="nextButton" class="btn btn-info hidden" download="video.mp4">Next</a>
+        <button id="closeButton" class="btn btn-secondary hidden" >Close</button>
     </div>
 
     <script>
@@ -30,7 +37,8 @@
     const downloadLink = document.getElementById("downloadLink");
     const startRecordButton = document.getElementById("startRecordButton");
     const stopRecordButton = document.getElementById("stopRecordButton");
-    const downloadVideoLink = document.getElementById("downloadVideoLink");
+    const nextButton = document.getElementById("nextButton");
+    const closeButton = document.getElementById("closeButton");
 
     const webcam = new Webcam(webCamElement, "user", canvasElement);
     let mediaRecorder;
@@ -44,13 +52,6 @@
       .catch(err => {
         console.log(err);
       });
-
-    // Capture a snapshot
-    snapButton.addEventListener("click", () => {
-        const picture = webcam.snap(); // Capture the picture
-        downloadLink.href = picture; // Set the href of the download link
-        downloadLink.style.display = "inline"; // Show the download link
-    });
 
     // Start recording
     startRecordButton.addEventListener("click", () => {
@@ -67,13 +68,14 @@
         mediaRecorder.onstop = () => {
             const blob = new Blob(recordedChunks, { type: 'video/mp4' });
             const url = URL.createObjectURL(blob);
-            downloadVideoLink.href = url;
-            downloadVideoLink.style.display = "inline"; // Show the download link
+            nextButton.href = url;
+            nextButton.style.display = "inline"; // Show the next button
         };
 
         mediaRecorder.start();
         startRecordButton.style.display = "none";
         stopRecordButton.style.display = "inline";
+        closeButton.style.display = "inline"; // Show the close button
     });
 
     // Stop recording
@@ -81,6 +83,18 @@
         mediaRecorder.stop();
         startRecordButton.style.display = "inline";
         stopRecordButton.style.display = "none";
+    });
+
+    // Close the webcam
+    closeButton.addEventListener("click", () => {
+        // Stop webcam and hide all elements
+        webcam.stop();
+        webCamElement.classList.add("hidden");
+        canvasElement.classList.add("hidden");
+        startRecordButton.classList.add("hidden");
+        stopRecordButton.classList.add("hidden");
+        nextButton.classList.add("hidden");
+        closeButton.classList.add("hidden");
     });
     </script>
 
