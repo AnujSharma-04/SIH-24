@@ -16,8 +16,29 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5 text-center">
-        <h1 class="mb-4">Webcam Capture and Recording</h1>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 ">
+          <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+              <img src="/static/Screenshot_2024-09-04_164035-removebg-preview.png" alt="logo" style="height: 50px; background-color: black;">
+            </a>
+          </div>
+    
+          <ul class="nav col-12 col-md-4 mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 nav-button">Home</a></li>
+            <li><a href="#" class="nav-link px-2 nav-button">Start Translation</a></li>
+            <li><a href="#" class="nav-link px-2 nav-button">Learn ISL</a></li>
+            <li><a href="#" class="nav-link px-2 nav-button">About Us</a></li>
+          </ul>
+    
+          <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-light">Login</button>
+            <button type="button" class="btn btn-dark">Sign-Up</button>
+          </div>
+        </header>
+      </div>
+    <div class="container mt-5 text-center text-white">
+        <h1 class="mb-4 ">Webcam Capture and Recording</h1>
         <video id="webCam" autoplay playsinline width="800" height="600" class="mb-3"></video>
         <canvas id="canvas" style="display: none;"></canvas>
         <!-- <button id="snapButton" class="btn btn-primary">SNAP</button> -->
