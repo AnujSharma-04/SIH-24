@@ -1,6 +1,3 @@
-<!-- This is only for storing the temporary data only! -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +12,7 @@
   <style>
     /* Style for the centered main content */
     .centered-content {
-      height: 100vh; /* Full viewport height */
+      height: 80vh; /* Full viewport height */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -48,6 +45,14 @@
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0.9s;
+    }
+
+    /* Modal styling */
+    .modal-content {
+      background-color: white;
+      color: #333;
+      border-radius: 10px;
+      padding: 20px;
     }
   </style>
 </head>
@@ -131,10 +136,25 @@
     </footer>
   </div>
 
-  <!-- Modal Structure -->
-  <div class="modal fade" id="translateModal" tabindex="-1" aria-labelledby="translateModalLabel" aria-hidden="true">
-    <!-- Modal content -->
+ <!-- Modal Structure -->
+<div class="modal fade" id="translateModal" tabindex="-1" aria-labelledby="translateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="translateModalLabel">Choose Your Action</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Please select an action to continue:</p>
+          <div class="d-flex justify-content-center gap-3">
+            <button type="button" class="btn btn-outline-dark rounded-pill px-4">Translate ISL to Text</button>
+            <button type="button" class="btn btn-dark rounded-pill px-4">Translate Text to ISL</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
