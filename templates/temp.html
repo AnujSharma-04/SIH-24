@@ -12,13 +12,13 @@
   <style>
     /* Style for the centered main content */
     .centered-content {
-      height: 80vh; /* Full viewport height */
+      height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding-bottom: 100px; /* Extra space below the section */
+      padding-bottom: 100px;
     }
 
     /* Paragraphs animation setup */
@@ -162,6 +162,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
+  <!-- JavaScript to trigger the visibility of paragraphs on scroll -->
+  <script>
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom >= 0;
+    }
+
+    function checkScroll() {
+      const paragraphs = document.querySelectorAll('.hidden-paragraph');
+      paragraphs.forEach(paragraph => {
+        if (isInViewport(paragraph)) {
+          paragraph.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll); // Trigger on page load in case the user is already scrolled down
+  </script>
 </body>
 
 </html>
