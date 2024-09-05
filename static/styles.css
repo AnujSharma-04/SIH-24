@@ -12,3 +12,10 @@ header {
 .nav {
     justify-content: center; /* Center the nav buttons */
 }
+
+a {
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    text-decoration: none;
+    }
