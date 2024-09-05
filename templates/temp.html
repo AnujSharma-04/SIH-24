@@ -147,35 +147,21 @@
         <div class="modal-body text-center">
           <p>Please select an action to continue:</p>
           <div class="d-flex justify-content-center gap-3">
-            <button type="button" class="btn btn-outline-dark rounded-pill px-4">Translate ISL to Text</button>
-            <button type="button" class="btn btn-dark rounded-pill px-4">Translate Text to ISL</button>
+            <a href="two_1.html">
+              <button type="button" class="btn btn-outline-dark rounded-pill px-15">Translate ISL to Text</button>
+            </a>
+            <a href="#">
+              <button type="button" class="btn btn-dark rounded-pill px-4">Translate Text to ISL</button>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-  <script>
-    // JavaScript to trigger the animation on scroll
-    document.addEventListener('DOMContentLoaded', () => {
-      const paragraphs = document.querySelectorAll('.hidden-paragraph');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      });
-
-      paragraphs.forEach(paragraph => observer.observe(paragraph));
-    });
-  </script>
-
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
