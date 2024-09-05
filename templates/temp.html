@@ -59,6 +59,72 @@
       background-color: #4285F4;
       color: white;
     }
+    /* Cursor Animation */
+    .cursor-dot {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, opacity 0.1s ease;
+    }
+
+    .cursor-dot.hidden {
+      opacity: 0;
+    }
+
+    /* 3D Smiley Face Styling
+.smiley-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, #ffcc00, #ff9900);
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(210, 204, 204, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1; /* Ensure it's behind other content */
+/* }
+
+.smiley-background::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgb(227, 218, 218);
+  border-radius: 50%;
+  top: 35px;
+  left: 30px;
+}
+
+.smiley-background::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgb(98, 53, 53);
+  border-radius: 50%;
+  top: 35px;
+  right: 30px;
+}
+
+.smiley-background span {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  border-radius: 50%;
+  border: 10px solid rgb(233, 222, 222);
+  border-color: rgb(214, 203, 203) transparent transparent transparent;
+  bottom: 25px;
+} */ 
+
+
   </style>
 </head>
 
@@ -240,10 +306,58 @@
         }
       });
     }
-
+    
     window.addEventListener('scroll', checkScroll);
     window.addEventListener('load', checkScroll); // Trigger on page load in case the user is already scrolled down
-  </script>
+// Create and append cursor dot
+const cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    document.body.appendChild(cursorDot);
+
+    // Update cursor dot position
+    document.addEventListener('mousemove', (e) => {
+      cursorDot.style.left = `${e.pageX}px`;
+      cursorDot.style.top = `${e.pageY}px`;
+    });
+
+    // Hide cursor dot on click
+    document.addEventListener('mousedown', () => {
+      cursorDot.classList.add('hidden');
+    });
+
+    document.addEventListener('mouseup', () => {
+      cursorDot.classList.remove('hidden');
+    });
+
+    // Show paragraphs when scrolled into view
+    const hiddenParagraphs = document.querySelectorAll('.hidden-paragraph');
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    hiddenParagraphs.forEach(paragraph => {
+      observer.observe(paragraph);
+    });
+
+  // </script>
+  //  <!-- Smiley Face 3D Element -->
+  //  <div class="smiley-background"></div>
+
+  //  <!-- Existing content here -->
+ 
+  //  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  //    integrity="sha384-7/1hVRa56T1k9sTFSvR2PRaISd4SS5i2oosN3V6H3C9B2g6H3UJk0aL7uXaeZFl0" crossorigin="anonymous">
+  //  </script>
 </body>
 
 </html>
