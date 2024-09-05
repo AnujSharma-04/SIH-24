@@ -1,1 +1,15 @@
-/* Nothing here */
+body {
+    background-color: black;
+}
+.nav-button {
+    color: white !important; 
+    font-weight: 500;
+}
+header {
+    border-bottom: none !important; /* Remove the bottom border */
+}
+
+.nav {
+    justify-content: center; /* Center the nav buttons */
+}
+
